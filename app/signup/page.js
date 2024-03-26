@@ -3,25 +3,18 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-// Define the page component
 const page = () => {
-	// Initialize useRouter hook
-	// const router = useRouter();
-
-	// Initialize state for form data
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
 		password: "",
 	});
 
-	// Handle form input change
 	const handleChange = (event) => {
 		const { name, value } = event.target;
 		setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
 	};
 
-	// Handle form submission
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
@@ -36,14 +29,12 @@ const page = () => {
 				}
 			);
 
-			// Handle successful response
 			console.log("Response:", response.data);
 			if (response.status === 200) {
-				// Redirect to login page
 				window.location.href = "/login";
 			}
 		} catch (error) {
-			// Handle errors
+			
 			console.error("Error:", error);
 		}
 	};
@@ -51,7 +42,7 @@ const page = () => {
 	return (
 		<>
 			<section className="min-h-screen flex flex-col justify-center items-center">
-				<div className="bg-[#F8F6E3]">
+				<div className="">
 					<form
 						onSubmit={handleSubmit}
 						className="max-w-sm mx-auto  shadow-md rounded px-8 pt-6 pb-8"

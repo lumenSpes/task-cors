@@ -19,7 +19,7 @@ const page = () => {
 		try {
 			const response = await axios.post(
 				"http://127.0.0.1:8000/api/login",
-				JSON.stringify(formData);
+				JSON.stringify(formData),
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -28,15 +28,14 @@ const page = () => {
 			);
 
 			if (response.status === 200) {
-				window.location.href = "/all-post";
+				localStorage.setItem("token", response.data.token)
+				window.location.href = "/posts";
 			} else {
 				console.error("Error:", error.response.data);
-				// Display an error message to the user
 				alert("Login failed. Please check your credentials.");
 			}
 		} catch (error) {
 			console.error("Error:", error.response.data);
-			// Display an error message to the user
 			alert("An error occurred during login. Please try again later.");
 		}
 	};
@@ -44,7 +43,7 @@ const page = () => {
 	return (
 		<>
 			<section className="min-h-screen flex flex-col justify-center items-center">
-				<div className="bg-[#F8F6E3]">
+				<div className="">
 					<form
 						onSubmit={handleSubmit}
 						className="max-w-sm mx-auto shadow-md rounded px-8 pt-6 pb-8"
